@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
 
   spec.summary       = %q{Logging for ascent }
   spec.description   = %q{Logging for ascent }
-  spec.homepage      = "github.com/indigobio/ascent-logger "
+  spec.homepage      = "http://github.com/indigobio/ascent-logger "
 
   # Prevent pushing this gem to RubyGems.org by setting 'allowed_push_host', or
   # delete this section to allow pushing this gem to any host.
