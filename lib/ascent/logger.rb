@@ -1,7 +1,10 @@
 require 'ascent/logger/version'
 require 'ascent/logger/const'
+require 'ascent/logger/contexts'
+require 'ascent/logger/message_formatting'
+require 'ascent/logger/basic_scoped_logger'
 require 'ascent/logger/basic_formatter'
-
+require 'ascent/logger/configuration'
 module Ascent
   module Logger
    class << self
