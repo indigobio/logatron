@@ -14,7 +14,7 @@ module Ascent
       attr_reader :loggable_levels, :backtrace_cleaner
 
       def initialize
-        @logger = Syslog::Logger.new('ascent')
+        @logger = ::Syslog::Logger.new('ascent')
         @host = `hostname`.chomp
         @level = INFO
         levels =   [DEBUG,
