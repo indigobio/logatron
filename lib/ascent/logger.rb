@@ -13,7 +13,7 @@ module Ascent
    class << self
      attr_internal :log
      def logger
-       @log ||= Ascent::Logger::BasicLogger.new(configuration.logger)
+       @log ||= Ascent::Logger::BasicLogger.new(logger:configuration.logger)
      end
 
      def log_error(msg)
