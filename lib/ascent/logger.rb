@@ -1,3 +1,4 @@
+require 'activesupport/all'
 require 'ascent/logger/version'
 require 'ascent/logger/const'
 require 'ascent/logger/contexts'
