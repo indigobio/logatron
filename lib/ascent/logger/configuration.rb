@@ -26,7 +26,7 @@ module Ascent
                     CRITICAL,
                     FATAL]
         @loggable_levels = levels.slice(levels.index(@level),levels.size-1)
-        bc = BacktraceCleaner.new
+        bc = ActiveSupport::BacktraceCleaner.new
         bc.add_filter   { |line| line.gsub(Rails.root.to_s, '') }
         bc.add_silencer { |line| line =~ /gems/ }
         @backtrace_cleaner = bc
