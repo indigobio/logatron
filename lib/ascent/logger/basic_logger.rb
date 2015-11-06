@@ -4,7 +4,7 @@ module Ascent
       include Ascent::Logger::Formatting
 
         def initialize(logger:Logger.new(STDOUT))
-          logger.formatter = BasicFormatter.new
+          logger.formatter = Ascent::Logger::BasicFormatter.new
           @logger = logger
         end
 
@@ -33,7 +33,7 @@ module Ascent
         end
 
         def log(msg:'-', severity: INFO, request: '-', status: '-', source: '-', &block)
-          ml = BasicScopedLogger.new(self)
+          ml = Ascent::Logger::BasicScopedLogger.new(self)
           start = Time.now
           begin
             block.call(ml)

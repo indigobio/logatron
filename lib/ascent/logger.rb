@@ -13,7 +13,7 @@ module Ascent
    class << self
      attr_internal :log
      def logger
-       @log ||= BasicLogger.new(configuration.logger)
+       @log ||= Ascent::Logger::BasicLogger.new(configuration.logger)
      end
 
      def log_error(msg)
@@ -25,19 +25,19 @@ module Ascent
      end
 
      def site
-       Contexts.site
+       Ascent::Logger::Contexts.site
      end
 
      def site=(site)
-       Contexts.site = site
+       Ascent::Logger::Contexts.site = site
      end
 
      def msg_id
-       Contexts.msg_id
+       Ascent::Logger::Contexts.msg_id
      end
 
      def msg_id=(id)
-       Contexts.msg_id = id
+       Ascent::Logger::Contexts.msg_id = id
      end
    end
   end
