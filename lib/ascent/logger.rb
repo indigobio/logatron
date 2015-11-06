@@ -6,32 +6,36 @@ require 'ascent/logger/message_formatting'
 require 'ascent/logger/basic_scoped_logger'
 require 'ascent/logger/basic_formatter'
 require 'ascent/logger/configuration'
+
 module Ascent
   module Logger
    class << self
      attr_internal :log
-     def self.logger
+     def logger
        @log ||= BasicLogger.new(configuration.logger)
      end
 
-     def self.log_error(msg)
+     def log_error(msg)
        logger.error msg
      end
 
-     def self.log_exception(e, severity)
+     def log_exception(e, severity)
        logger.send(severity.downcase, "#{e.class} #{configuration.backtrace_cleaner.clean(e.backtrace).join(' -> ')}")
      end
 
-     def self.site
+     def site
        Contexts.site
      end
-     def self.site=(site)
+
+     def site=(site)
        Contexts.site = site
      end
-     def self.msg_id
+
+     def msg_id
        Contexts.msg_id
      end
-     def self.msg_id=(id)
+
+     def msg_id=(id)
        Contexts.msg_id = id
      end
    end
