@@ -7,7 +7,7 @@ module Ascent
           (finish - start) * 1000.0
         end
 
-        def format(msg:'-', status:'-', duration:'-', request:'-', inputs:'-',severity: '-')
+        def format_log(msg:'-', status:'-', duration:'-', request:'-', inputs:'-',severity: '-')
         {
             timestamp:Time.now.iso8601,
             severity:severity,
