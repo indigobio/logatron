@@ -9,27 +9,27 @@ module Ascent
         end
 
         def info(msg)
-          write(format(msg:msg,severity:INFO))
+          write(format_log(msg:msg,severity:INFO))
         end
 
         def warn(msg)
-          write(format(msg:msg,severity:WARN))
+          write(format_log(msg:msg,severity:WARN))
         end
 
         def debug(msg)
-          write(format(msg:msg,severity:DEBUG))
+          write(format_log(msg:msg,severity:DEBUG))
         end
 
         def error(msg)
-          write(format(msg:msg,severity:ERROR))
+          write(format_log(msg:msg,severity:ERROR))
         end
 
         def critical(msg)
-          write(format(msg:msg,severity:CRITICAL))
+          write(format_log(msg:msg,severity:CRITICAL))
         end
 
         def fatal(msg)
-          write(format(msg:msg,severity:FATAL))
+          write(format_log(msg:msg,severity:FATAL))
         end
 
         def log(msg:'-', severity: INFO, request: '-', status: '-', source: '-', &block)
@@ -37,9 +37,9 @@ module Ascent
           start = Time.now
           begin
             block.call(ml)
-            write(format(severity:severity, msg:msg, status:status,duration:milliseconds_elapsed(Time.now,start), inputs:source, request:request))
+            write(format_log(severity:severity, msg:msg, status:status,duration:milliseconds_elapsed(Time.now,start), inputs:source, request:request))
           rescue Exception => e
-            write(format(severity:severity, msg:msg, status:status,duration:milliseconds_elapsed(Time.now,start), inputs:source, request:request))
+            write(format_log(severity:severity, msg:msg, status:status,duration:milliseconds_elapsed(Time.now,start), inputs:source, request:request))
             ml.flush
             raise e
           end

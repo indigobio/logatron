@@ -16,27 +16,27 @@ module Ascent
       end
 
       def info(msg)
-        write(format(msg:msg, severity:INFO),INFO)
+        write(format_log(msg:msg, severity:INFO),INFO)
       end
 
       def warn(msg)
-        write(format(msg:msg, severity:WARN),WARN)
+        write(format_log(msg:msg, severity:WARN),WARN)
       end
 
       def debug(msg)
-        write(format(msg:msg, severity:DEBUG),DEBUG)
+        write(format_log(msg:msg, severity:DEBUG),DEBUG)
       end
 
       def error(msg)
-        write(format(msg:msg, severity:ERROR),ERROR)
+        write(format_log(msg:msg, severity:ERROR),ERROR)
       end
 
       def critical(msg)
-        write(format(msg:msg, severity:CRITICAL),CRITICAL)
+        write(format_log(msg:msg, severity:CRITICAL),CRITICAL)
       end
 
       def fatal(msg)
-        write(format(msg:msg, severity:FATAL),FATAL)
+        write(format_log(msg:msg, severity:FATAL),FATAL)
       end
 
       def write(string,severity=INFO)
