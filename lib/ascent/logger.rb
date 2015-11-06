@@ -16,13 +16,37 @@ module Ascent
        @log ||= Ascent::Logger::BasicLogger.new(logger:configuration.logger)
      end
 
-     def log_error(msg)
-       logger.error msg
-     end
-
      def log_exception(e, severity)
        logger.send(severity.downcase, "#{e.class} #{configuration.backtrace_cleaner.clean(e.backtrace).join(' -> ')}")
      end
+
+     def error(msg)
+       logger.error(msg)
+     end
+
+     def warn(msg)
+       logger.warn(msg)
+     end
+
+     def info(msg)
+       logger.info(msg)
+     end
+
+     def fatal(msg)
+       logger.fatal(msg)
+     end
+
+     def critical(msg)
+       logger.critical(msg)
+     end
+
+     def debug(msg)
+       logger.debug(msg)
+     end
+
+    def log(id:Ascent::Logging::Contexts.msg_id, site: Ascent::Logging::Contexts.site, msg:'-', severity: INFO, request: '-', status: '-', source: '-', &block)
+       logger.log(id:id, site:site, msg:msg, severity:severity, request:request, status:status, source:source, &block)
+    end
 
      def site
        Ascent::Logger::Contexts.site
