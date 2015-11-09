@@ -1,7 +1,7 @@
 module Ascent
   module Logger
     module Formatting
-      class << self
+
 
         def milliseconds_elapsed(finish, start)
           (finish - start) * 1000.0
@@ -11,7 +11,7 @@ module Ascent
         {
             timestamp:Time.now.iso8601,
             severity:severity,
-            host: configuration.host,
+            host: Ascent::Logger.configuration.host,
             id: Contexts.msg_id,
             site: Contexts.site,
             status: status,
@@ -24,4 +24,4 @@ module Ascent
       end
     end
   end
-end
+

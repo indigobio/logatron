@@ -44,7 +44,7 @@ module Ascent
       end
 
       def flush
-        configuration.loggable_levels.each do |key|
+        Ascent::Logger.configuration.loggable_levels.each do |key|
           @logs[key].each do |item|
             @logger.write(item)
           end
