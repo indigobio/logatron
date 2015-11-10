@@ -44,6 +44,11 @@ module Ascent
        logger.debug(msg)
      end
 
+    def http_headers
+      {
+          'X-Ascent-Log-Id' => msg_id
+      }
+    end
     def log(id:Ascent::Logging::Contexts.msg_id, site: Ascent::Logging::Contexts.site, msg:'-', severity: INFO, request: '-', status: '-', source: '-', &block)
        logger.log(id:id, site:site, msg:msg, severity:severity, request:request, status:status, source:source, &block)
     end
