@@ -1,11 +1,11 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'ascent/logger/version'
+require 'logatron/version'
 
 Gem::Specification.new do |spec|
   spec.name          = "ascent-logger"
-  spec.version       = Ascent::Logger::VERSION
+  spec.version       = Logatron::Logger::VERSION
   spec.authors       = ["Justin Grimes"]
   spec.email         = ["justin.mgrimes@gmail.com"]
 
