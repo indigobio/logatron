@@ -19,7 +19,7 @@ module Logatron
 
     def level=(a_level)
       @level = a_level
-      @logger.level = @level
+      @logger.level = @map[@level]
     end
 
     def info(msg)
