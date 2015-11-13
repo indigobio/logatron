@@ -17,7 +17,7 @@ module Logatron
   end
 
   class Railtie < Rails::Railtie
-    initializer 'my_railtie.configure_rails_initialization' do |app|
+    initializer 'logatron.configure_rails_initialization' do |app|
 
       if defined?(Warden::Manager)
         app.middleware.insert_before(Warden::Manager, Logatron::Middleware)
