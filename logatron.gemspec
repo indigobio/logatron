@@ -5,7 +5,7 @@ require 'logatron/version'
 
 Gem::Specification.new do |spec|
   spec.name          = "ascent-logger"
-  spec.version       = Logatron::Logger::VERSION
+  spec.version       = Logatron::VERSION
   spec.authors       = ["Justin Grimes"]
   spec.email         = ["justin.mgrimes@gmail.com"]
 
