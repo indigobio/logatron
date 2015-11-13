@@ -19,6 +19,7 @@ module Logatron
 
     def level=(a_level)
       @level = a_level
+      @logger.level = @level
     end
 
     def info(msg)
@@ -60,6 +61,7 @@ module Logatron
     end
 
     def write(string, severity=@map[@level])
+
       @logger.log(severity, string)
     end
 
