@@ -17,7 +17,7 @@ module Logatron
   end
 
   class Railtie < Rails::Railtie
-    require 'lograge/lograge'
+
     initializer 'logatron.configure_rails_initialization' do |app|
 
       if defined?(Warden::Manager)
