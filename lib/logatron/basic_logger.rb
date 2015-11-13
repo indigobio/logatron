@@ -2,6 +2,20 @@ module Logatron
   class BasicLogger
     include Logatron::Formatting
 
+    @map =  {
+        Logatron::DEBUG => 0,
+        Logatron::INFO => 1,
+        Logatron::WARN => 2,
+        Logatron::ERROR => 3,
+        Logatron::CRITICAL => 4,
+        Logatron::FATAL => 5
+
+    }
+
+    def severity_map
+      @map
+    end
+
     def initialize(logger: Logger.new(STDOUT))
       logger.formatter = Logatron::BasicFormatter.new
       @logger = logger
@@ -45,9 +59,11 @@ module Logatron
       end
     end
 
-    def write(string, severity=0)
+    def write(string, severity=severity_map[configuration.level])
       @logger.log(severity, string)
     end
+
+
 
   end
 
