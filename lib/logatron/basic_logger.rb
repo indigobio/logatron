@@ -16,9 +16,14 @@ module Logatron
       @map
     end
 
-    def initialize(logger: Logger.new(STDOUT))
+    def initialize(logger: Logger.new(STDOUT), level: Logatron::INFO)
+      @level = level
       logger.formatter = Logatron::BasicFormatter.new
       @logger = logger
+    end
+
+    def level=(a_level)
+      @level = a_level
     end
 
     def info(msg)
@@ -59,11 +64,9 @@ module Logatron
       end
     end
 
-    def write(string, severity=severity_map[configuration.level])
+    def write(string, severity=severity_map[@level])
       @logger.log(severity, string)
     end
-
-
 
   end
 
