@@ -64,7 +64,7 @@ module Logatron
       end
     end
 
-    def write(string, severity=severity_map[@level])
+    def write(string, severity=@map[@level])
       @logger.log(severity, string)
     end
 
