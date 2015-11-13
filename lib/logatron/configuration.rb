@@ -30,5 +30,12 @@ module Logatron
       bc.add_silencer { |line| line =~ /gems/ }
       @backtrace_cleaner = bc
     end
+
+    def logger=(logger)
+      level = @logger.level
+      @logger = logger
+      @logger.level = level
+      @logger.formatter = Logatron::BasicFormatter.new
+    end
   end
 end

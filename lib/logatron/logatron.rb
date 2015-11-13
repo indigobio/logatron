@@ -13,7 +13,7 @@ module Logatron
     attr_internal :log
 
     def logger
-      @log ||= Logatron::BasicLogger.new(logger: configuration.logger, level: configuration.level)
+      @log ||= Logatron::BasicLogger.new
     end
 
     def log_exception(e, severity)
