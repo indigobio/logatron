@@ -2,24 +2,19 @@ module Logatron
   class BasicLogger
     include Logatron::Formatting
 
-    @map =  {
-        Logatron::DEBUG => 0,
-        Logatron::INFO => 1,
-        Logatron::WARN => 2,
-        Logatron::ERROR => 3,
-        Logatron::CRITICAL => 4,
-        Logatron::FATAL => 5
-
-    }
-
-    def severity_map
-      @map
-    end
-
     def initialize(logger: Logger.new(STDOUT), level: Logatron::INFO)
       @level = level
       logger.formatter = Logatron::BasicFormatter.new
       @logger = logger
+      @map =  {
+          Logatron::DEBUG => 0,
+          Logatron::INFO => 1,
+          Logatron::WARN => 2,
+          Logatron::ERROR => 3,
+          Logatron::CRITICAL => 4,
+          Logatron::FATAL => 5
+
+      }
     end
 
     def level=(a_level)
