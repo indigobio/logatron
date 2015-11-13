@@ -45,7 +45,7 @@ module Logatron
     def flush
       Logatron.configuration.loggable_levels.each do |key|
         @logs[key].each do |item|
-          @logger.write(item)
+          @logger.write(item,Logatron::BasicLogger::MAP[key])
         end
       end
     end
