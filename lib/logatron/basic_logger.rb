@@ -31,7 +31,7 @@ module Logatron
       write(format_log(msg: msg, severity: FATAL))
     end
 
-    def log(msg: '-', severity: INFO, request: '-', status: '-', source: '-', &block)
+    def log(id: '-', site: '-', msg: '-', severity: INFO, request: '-', status: '-', source: '-', &block)
       ml = Logatron::BasicScopedLogger.new(self)
       start = Time.now
       begin
