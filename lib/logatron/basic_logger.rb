@@ -23,27 +23,27 @@ module Logatron
     end
 
     def info(msg)
-      write(format_log(msg: msg, severity: INFO))
+      write(format_log(msg: msg, severity: INFO), @map[INFO])
     end
 
     def warn(msg)
-      write(format_log(msg: msg, severity: WARN))
+      write(format_log(msg: msg, severity: WARN), @map[WARN])
     end
 
     def debug(msg)
-      write(format_log(msg: msg, severity: DEBUG))
+      write(format_log(msg: msg, severity: DEBUG), @map[DEBUG])
     end
 
     def error(msg)
-      write(format_log(msg: msg, severity: ERROR))
+      write(format_log(msg: msg, severity: ERROR), @map[ERROR])
     end
 
     def critical(msg)
-      write(format_log(msg: msg, severity: CRITICAL))
+      write(format_log(msg: msg, severity: CRITICAL), @map[CRITICAL])
     end
 
     def fatal(msg)
-      write(format_log(msg: msg, severity: FATAL))
+      write(format_log(msg: msg, severity: FATAL), @map[FATAL])
     end
 
     def log(id: '-', site: '-', msg: '-', severity: INFO, request: '-', status: '-', source: '-', &block)
@@ -51,16 +51,16 @@ module Logatron
       start = Time.now
       begin
         res = block.call(ml)
-        write(format_log(severity: severity, msg: msg, status: status, duration: milliseconds_elapsed(Time.now, start), inputs: source, request: request))
+        write(format_log(severity: severity, msg: msg, status: status, duration: milliseconds_elapsed(Time.now, start), inputs: source, request: request),severity)
         res
       rescue Exception => e
-        write(format_log(severity: severity, msg: msg, status: status, duration: milliseconds_elapsed(Time.now, start), inputs: source, request: request))
+        write(format_log(severity: severity, msg: msg, status: status, duration: milliseconds_elapsed(Time.now, start), inputs: source, request: request),severity)
         ml.flush
         raise e
       end
     end
 
-    def write(string, severity=@map[@level])
+    def write(string,severity)
 
       @logger.log(severity, string)
     end
