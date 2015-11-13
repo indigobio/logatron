@@ -28,7 +28,7 @@ module Logatron
 
 
     end
-    after_initialize do
+    app.after_initialize do
       app.lograge.enabled = true
       app.lograge.formatter = Lograge::Formatters::Json.new
       app.lograge.custom_options = lambda do |event|
