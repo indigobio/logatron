@@ -28,10 +28,10 @@ module Logatron
 
 
     end
-    app.after_initialize do
-      app.lograge.enabled = true
-      app.lograge.formatter = Lograge::Formatters::Json.new
-      app.lograge.custom_options = lambda do |event|
+    config.after_initialize do
+      config.lograge.enabled = true
+      config.lograge.formatter = Lograge::Formatters::Json.new
+      config.lograge.custom_options = lambda do |event|
         {:source => event.payload[:ip], :severity=> Logatron::INFO, :site => Logatron.site, :timestamp => Time.now.iso8601, :host => Logatron.configuration.host, :id => Logatron.msg_id}
       end
     end
