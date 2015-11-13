@@ -16,8 +16,7 @@ module Logatron
                                                   request: request,
                                                   source: inputs,
                                                   body: msg
-                                              })
-      + "\n"
+                                              }) + "\n"
     end
   end
 end
