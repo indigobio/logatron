@@ -35,8 +35,9 @@ module Logatron
       ml = Logatron::BasicScopedLogger.new(self)
       start = Time.now
       begin
-        block.call(ml)
+        res = block.call(ml)
         write(format_log(severity: severity, msg: msg, status: status, duration: milliseconds_elapsed(Time.now, start), inputs: source, request: request))
+        res
       rescue Exception => e
         write(format_log(severity: severity, msg: msg, status: status, duration: milliseconds_elapsed(Time.now, start), inputs: source, request: request))
         ml.flush
