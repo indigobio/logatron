@@ -17,6 +17,7 @@ module Logatron
   end
 
   class Railtie < Rails::Railtie
+    require 'lograge/lograge'
     initializer 'logatron.configure_rails_initialization' do |app|
 
       if defined?(Warden::Manager)
@@ -24,13 +25,16 @@ module Logatron
       else
         app.middleware.use Logatron::Middleware
       end
-      require 'lograge/lograge'
+
+
+    end
+    after_initialize do
       app.lograge.enabled = true
       app.lograge.formatter = Lograge::Formatters::Json.new
       app.lograge.custom_options = lambda do |event|
         {:source => event.payload[:ip], :severity=> Logatron::INFO, :site => Logatron.site, :timestamp => Time.now.iso8601, :host => Logatron.configuration.host, :id => Logatron.msg_id}
       end
-      end
+    end
   end
 
 end
