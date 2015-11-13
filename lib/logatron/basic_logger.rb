@@ -8,7 +8,7 @@ module Logatron
         Logatron::WARN => 2,
         Logatron::ERROR => 3,
         Logatron::CRITICAL => 4,
-        Logatron::FATAL => 5x
+        Logatron::FATAL => 5
     }
 
     def level=(a_level)
