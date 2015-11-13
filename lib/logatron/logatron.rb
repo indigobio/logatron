@@ -20,6 +20,9 @@ module Logatron
       logger.send(severity.downcase, "#{e.class} #{e.message} -> #{configuration.backtrace_cleaner.clean(e.backtrace).join(' -> ')}")
     end
 
+    def level=(level)
+      logger.level=level
+    end
     def error(msg)
       logger.error(msg)
     end
