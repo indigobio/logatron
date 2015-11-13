@@ -50,7 +50,7 @@ module Logatron
       }
     end
 
-    def log(id: msg_id, site: site, msg: '-', severity: Logatron::INFO, request: '-', status: '-', source: '-', &block)
+    def log(id: msg_id, site: Logatron.site, msg: '-', severity: Logatron::INFO, request: '-', status: '-', source: '-', &block)
       logger.log(id: id, site: site, msg: msg, severity: severity, request: request, status: status, source: source, &block)
     end
 
