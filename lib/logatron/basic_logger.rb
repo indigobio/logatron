@@ -8,10 +8,8 @@ module Logatron
         Logatron::WARN => 2,
         Logatron::ERROR => 3,
         Logatron::CRITICAL => 4,
-        Logatron::FATAL => 5
-
+        Logatron::FATAL => 5x
     }
-
 
     def level=(a_level)
       Logatron.configuration.logger.level = MAP[a_level]

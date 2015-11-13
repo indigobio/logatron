@@ -11,11 +11,12 @@ module Logatron
   end
 
   class Configuration
-    attr_accessor :logger, :host, :level
+    attr_accessor :logger, :host, :level, :transformer
     attr_reader :loggable_levels, :backtrace_cleaner
 
     def initialize
       @logger = Syslog::Logger.new('ascent')
+      @transformer =  proc {|x| x.to_json}
       @host = `hostname`.chomp
       @level = INFO
       levels = [DEBUG,
