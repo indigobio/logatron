@@ -24,7 +24,7 @@ module Logatron
       else
         app.middleware.use Logatron::Middleware
       end
-
+      require 'lograge/lograge'
       app.lograge.enabled = true
       app.lograge.formatter = Lograge::Formatters::Json.new
       app.lograge.custom_options = lambda do |event|
