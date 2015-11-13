@@ -4,7 +4,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'logatron/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "ascent-logger"
+  spec.name          = 'logatron'
   spec.version       = Logatron::VERSION
   spec.authors       = ["Justin Grimes"]
   spec.email         = ["justin.mgrimes@gmail.com"]

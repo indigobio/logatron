@@ -1,13 +1,13 @@
 PATH
   remote: .
   specs:
-    ascent-logger (0.1.0)
+    logatron (0.1.0)
       activesupport (~> 4.2.1)
 
 GEM
   remote: https://rubygems.org/
   specs:
-    activesupport (4.2.4)
+    activesupport (4.2.3)
       i18n (~> 0.7)
       json (~> 1.7, >= 1.7.7)
       minitest (~> 5.1)
@@ -16,7 +16,7 @@ GEM
     diff-lcs (1.2.5)
     i18n (0.7.0)
     json (1.8.3)
-    minitest (5.8.2)
+    minitest (5.7.0)
     rake (10.4.2)
     rspec (3.3.0)
       rspec-core (~> 3.3.0)
@@ -39,8 +39,8 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  ascent-logger!
   bundler (~> 1.10)
+  logatron!
   rake (~> 10.0)
   rspec
 
