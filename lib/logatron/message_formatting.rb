@@ -1,3 +1,5 @@
+require 'logatron/contexts'
+require 'logatron/configuration'
 module Logatron
   module Formatting
     def milliseconds_elapsed(finish, start)

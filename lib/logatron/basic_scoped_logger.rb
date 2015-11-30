@@ -1,3 +1,8 @@
+require 'logatron/const'
+require 'logatron/basic_logger'
+require 'logatron/message_formatting'
+require 'logatron/configuration'
+
 module Logatron
   class BasicScopedLogger
     include Logatron::Formatting
@@ -45,7 +50,7 @@ module Logatron
     def flush
       Logatron.configuration.loggable_levels.each do |key|
         @logs[key].each do |item|
-          @logger.write(item,Logatron::BasicLogger::MAP[key])
+          @logger.write(item,SEVERITY_MAP[key])
         end
       end
     end

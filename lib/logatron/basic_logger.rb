@@ -1,42 +1,39 @@
+require 'logatron/message_formatting'
+require 'logatron/const'
+require 'logatron/configuration'
+require 'logatron/basic_scoped_logger'
 module Logatron
   class BasicLogger
     include Logatron::Formatting
 
-    MAP =  {
-        Logatron::DEBUG => 0,
-        Logatron::INFO => 1,
-        Logatron::WARN => 2,
-        Logatron::ERROR => 3,
-        Logatron::CRITICAL => 4,
-        Logatron::FATAL => 5
-    }
+
 
     def level=(a_level)
-      Logatron.configuration.logger.level = MAP[a_level]
+      Logatron.configuration.logger.level = SEVERITY_MAP[a_level]
     end
 
     def info(msg)
-      write(format_log(msg: msg, severity: INFO), MAP[INFO])
+      write(format_log(msg: msg, severity: INFO), SEVERITY_MAP[INFO])
     end
 
     def warn(msg)
-      write(format_log(msg: msg, severity: WARN), MAP[WARN])
+      write(format_log(msg: msg, severity: WARN), SEVERITY_MAP[WARN])
     end
 
     def debug(msg)
-      write(format_log(msg: msg, severity: DEBUG), MAP[DEBUG])
+      write(format_log(msg: msg, severity: DEBUG), SEVERITY_MAP[DEBUG])
     end
 
     def error(msg)
-      write(format_log(msg: msg, severity: ERROR), MAP[ERROR])
+      write(format_log(msg: msg, severity: ERROR), SEVERITY_MAP[ERROR])
     end
 
     def critical(msg)
-      write(format_log(msg: msg, severity: CRITICAL), MAP[CRITICAL])
+      write(format_log(msg: msg, severity: CRITICAL), SEVERITY_MAP[CRITICAL])
     end
 
     def fatal(msg)
-      write(format_log(msg: msg, severity: FATAL), MAP[FATAL])
+      write(format_log(msg: msg, severity: FATAL), SEVERITY_MAP[FATAL])
     end
 
     def log(id: '-', site: '-', msg: '-', severity: INFO, request: '-', status: '-', source: '-', &block)
@@ -44,10 +41,10 @@ module Logatron
       start = Time.now
       begin
         res = block.call(ml)
-        write(format_log(severity: severity, msg: msg, status: status, duration: milliseconds_elapsed(Time.now, start), inputs: source, request: request),MAP[severity])
+        write(format_log(severity: severity, msg: msg, status: status, duration: milliseconds_elapsed(Time.now, start), inputs: source, request: request),SEVERITY_MAP[severity])
         res
       rescue Exception => e
-        write(format_log(severity: severity, msg: msg, status: status, duration: milliseconds_elapsed(Time.now, start), inputs: source, request: request),MAP[severity])
+        write(format_log(severity: severity, msg: msg, status: status, duration: milliseconds_elapsed(Time.now, start), inputs: source, request: request),SEVERITY_MAP[severity])
         ml.flush
         raise e
       end

@@ -1,12 +1,23 @@
 require 'syslog/logger'
+require 'logatron/const'
+require 'logatron/basic_formatter'
+require 'active_support/backtrace_cleaner'
+require 'active_support/json'
 
 module Logatron
   class << self
-    attr_accessor :configuration
+    def configuration=
+      @configuration = configuration
+    end
+
+    def configuration
+      @configuration ||= Configuration.new
+    end
   end
 
+
   def self.configure
-    self.configuration ||= Configuration.new
+    self.configuration
     yield(configuration)
   end
 
