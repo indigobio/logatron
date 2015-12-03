@@ -1,3 +1,9 @@
+module Syslog
+  class Logger
+    alias_method :log, :add
+  end
+end
+
 module Logatron
   class Middleware
     def initialize(app)
@@ -28,7 +34,7 @@ module Logatron
 
     end
 
-
+      config.lograge.logger = Logatron
       config.lograge.enabled = true
       config.lograge.formatter = Lograge::Formatters::Json.new
       config.lograge.custom_options = lambda do |event|

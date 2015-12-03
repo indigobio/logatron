@@ -27,6 +27,7 @@ module Logatron
 
     def initialize
       @logger = Syslog::Logger.new('ascent')
+
       @transformer =  proc {|x| x.to_json}
       @host = `hostname`.chomp
       @level = INFO
