@@ -31,7 +31,7 @@ updateVersion(){
 
 updateGemspec(){
     echo -e "\nUpdating gemspec version"
-    local gemspecPath="${SCRIPT_DIR}/compute_runner.gemspec"
+    local gemspecPath="${SCRIPT_DIR}/logatron.gemspec"
     sed -i 's/\(\.version\s*=\s*\).*/\1'"'${VERSION}'/" "${gemspecPath}"
     stageFiles "${gemspecPath}"
 }
