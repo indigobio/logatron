@@ -34,7 +34,7 @@ module Logatron
 
     end
 
-      config.lograge.logger = Logatron.logger
+      config.lograge.logger = Logatron.configuration.logger
       config.lograge.enabled = true
       config.lograge.formatter = Lograge::Formatters::Json.new
       config.lograge.custom_options = lambda do |event|
