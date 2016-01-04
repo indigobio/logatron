@@ -1,3 +1,5 @@
+require 'lograge'
+
 module Syslog
   class Logger
     alias_method :log, :add
