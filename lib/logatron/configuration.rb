@@ -25,7 +25,7 @@ module Logatron
     attr_reader :loggable_levels, :backtrace_cleaner
 
     def initialize
-      @logger = Logger.new(STDOUT)
+     # @logger = Logger.new(STDOUT)
 
       @transformer =  proc {|x| x.to_json}
       @host = `hostname`.chomp
