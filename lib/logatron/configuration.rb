@@ -25,7 +25,7 @@ module Logatron
     attr_reader :loggable_levels, :backtrace_cleaner
 
     def initialize
-     # @logger = Logger.new(STDOUT)
+      @logger = Logger.new(STDOUT)
 
       @transformer =  proc {|x| x.to_json}
       @host = `hostname`.chomp
@@ -44,7 +44,7 @@ module Logatron
     end
 
     def logger=(logger)
-      level = @logger ? @logger.level : Logatron::SEVERITY_MAP[@level]
+      level = @logger.level 
       @logger = logger
       @logger.level = level
       @logger.formatter = Logatron::BasicFormatter.new
