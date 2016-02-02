@@ -44,7 +44,7 @@ module Logatron
     end
 
     def logger=(logger)
-      level = @logger.level
+      level = @logger ? @logger.level : @level
       @logger = logger
       @logger.level = level
       @logger.formatter = Logatron::BasicFormatter.new
