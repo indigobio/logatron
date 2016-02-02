@@ -15,7 +15,6 @@ module Logatron
     end
   end
 
-
   def self.configure
     self.configuration
     yield(configuration)
@@ -26,7 +25,7 @@ module Logatron
     attr_reader :loggable_levels, :backtrace_cleaner
 
     def initialize
-      @logger = Syslog::Logger.new('ascent')
+      @logger = Logger.new(STDOUT)
 
       @transformer =  proc {|x| x.to_json}
       @host = `hostname`.chomp
