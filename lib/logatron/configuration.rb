@@ -44,7 +44,7 @@ module Logatron
     end
 
     def logger=(logger)
-      level = @logger ? @logger.level : Logatron::SEVERITY[@level]
+      level = @logger ? @logger.level : Logatron::SEVERITY_MAP[@level]
       @logger = logger
       @logger.level = level
       @logger.formatter = Logatron::BasicFormatter.new
