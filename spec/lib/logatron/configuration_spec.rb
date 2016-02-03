@@ -21,7 +21,7 @@ module Logatron
     describe '#initialize' do
       it 'Sets reasonable defaults' do
         configuration = Configuration.new
-        expect(configuration.logger).to be_a_kind_of(Syslog::Logger)
+        expect(configuration.logger).to be_a_kind_of(Logger)
         expect(configuration.host).to eql(`hostname`.chomp)
         expect(configuration.level).to eql(Logatron::INFO)
         expect(configuration.loggable_levels).to eql [INFO,WARN,ERROR,CRITICAL,FATAL]
