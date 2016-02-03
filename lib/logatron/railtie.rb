@@ -1,5 +1,5 @@
 require 'lograge' # if this is an error for you, add 'lograge' to your bundle (left out of this gem's gemspec to keep dependencies down)
-
+require 'syslog/logger'
 module Syslog
   class Logger
     alias log add
