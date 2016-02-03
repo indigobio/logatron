@@ -1,3 +1,4 @@
+require 'logger'
 require 'logatron/const'
 require 'logatron/basic_formatter'
 require 'active_support/backtrace_cleaner'
