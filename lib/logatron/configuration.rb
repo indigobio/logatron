@@ -1,4 +1,4 @@
-require 'syslog/logger'
+require 'logger'
 require 'logatron/const'
 require 'logatron/basic_formatter'
 require 'active_support/backtrace_cleaner'
@@ -15,7 +15,6 @@ module Logatron
     end
   end
 
-
   def self.configure
     self.configuration
     yield(configuration)
@@ -26,7 +25,7 @@ module Logatron
     attr_reader :loggable_levels, :backtrace_cleaner
 
     def initialize
-      @logger = Syslog::Logger.new('ascent')
+      @logger = Logger.new(STDOUT)
 
       @transformer =  proc {|x| x.to_json}
       @host = `hostname`.chomp
@@ -45,7 +44,7 @@ module Logatron
     end
 
     def logger=(logger)
-      level = @logger.level
+      level = @logger.level 
       @logger = logger
       @logger.level = level
       @logger.formatter = Logatron::BasicFormatter.new

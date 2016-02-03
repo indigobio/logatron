@@ -5,7 +5,7 @@ require 'logatron/version'
 
 Gem::Specification.new do |spec|
   spec.name          = 'logatron'
-  spec.version       = '0.2.3'
+  spec.version       = '0.2.4'
   spec.authors       = ['Justin Grimes']
   spec.email         = ['justin.mgrimes@gmail.com']
 
