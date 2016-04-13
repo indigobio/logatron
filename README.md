@@ -22,7 +22,16 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+### Severities
+Severities are used to examine and filter server logs, create alerts, and analyze user behavior.
+
+* Debug - use for fixing production bugs or deeper inspection into behavior
+* Invalid Use - use for user errors due to invalid inputs
+* Info - use for general information (successful operations, ec.)
+* Warn - use for recoverable errors
+* Error - use for known unrecoverable errors
+* Critical - use for unknown unrecoverable errors (system-level rescues)
+* Fatal - use for system errors
 
 ## Development
 

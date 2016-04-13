@@ -3,9 +3,7 @@ require 'logatron/message_formatting'
 require 'logatron/basic_logger'
 
 module Logatron
-
   describe Formatting do
-
     describe '.format_log' do
       it 'invokes a proc passing a structured hash' do
         structured_hash = {}
