@@ -6,8 +6,6 @@ module Logatron
   class BasicLogger
     include Logatron::Formatting
 
-
-
     def level=(a_level)
       Logatron.configuration.logger.level = SEVERITY_MAP[a_level]
     end
@@ -53,8 +51,6 @@ module Logatron
     def write(string,severity)
       Logatron.configuration.logger.log(severity, string)
     end
-
   end
-
 end
 
