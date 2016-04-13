@@ -1,11 +1,11 @@
 module Logatron
-  WARN = 'WARN'
-  INFO = 'INFO'
-  ERROR = 'ERROR'
-  CRITICAL = 'CRITICAL'
-  FATAL = 'FATAL'
-  DEBUG = 'DEBUG'
-  INVALID_USE = 'INVALID_USE'
+  WARN = 'WARN'.freeze
+  INFO = 'INFO'.freeze
+  ERROR = 'ERROR'.freeze
+  CRITICAL = 'CRITICAL'.freeze
+  FATAL = 'FATAL'.freeze
+  DEBUG = 'DEBUG'.freeze
+  INVALID_USE = 'INVALID_USE'.freeze
   MSG_ID = :msg_id
   SITE = :site
   SEVERITY_MAP =  {
