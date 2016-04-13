@@ -30,8 +30,8 @@ Severities are used to examine and filter server logs, create alerts, and analyz
 * Info - use for general information (successful operations, ec.)
 * Warn - use for recoverable errors
 * Error - use for known unrecoverable errors
-* Critical - use for system errors
-* Fatal - use for unknown unrecoverable errors (system-level rescues)
+* Critical - use for unknown unrecoverable errors (system-level rescues)
+* Fatal - use for system errors
 
 ## Development
 
