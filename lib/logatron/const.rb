@@ -6,7 +6,6 @@ module Logatron
   FATAL = 'FATAL'
   DEBUG = 'DEBUG'
   INVALID_USE = 'INVALID_USE'
-  UNKNOWN = 'UNKNOWN'
   MSG_ID = :msg_id
   SITE = :site
   SEVERITY_MAP =  {
@@ -14,9 +13,8 @@ module Logatron
       Logatron::INVALID_USE => 1,
       Logatron::INFO => 2,
       Logatron::WARN => 3,
-      Logatron::UNKNOWN => 4,
-      Logatron::ERROR => 5,
-      Logatron::CRITICAL => 6,
-      Logatron::FATAL => 7
+      Logatron::ERROR => 4,
+      Logatron::CRITICAL => 5,
+      Logatron::FATAL => 6
   }
 end
