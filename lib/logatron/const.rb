@@ -10,6 +10,15 @@ module Logatron
   CRITICAL = 'CRITICAL'.freeze
   FATAL = 'FATAL'.freeze
 
+  # Maps Constants to the Logger Severity Integers:
+  #   DEBUG = 0
+  #   INFO = 1
+  #   WARN = 2
+  #   ERROR = 3
+  #   FATAL = 4
+  #   UNKNOWN = 5
+  # Note that the Logatron Severities will be put into
+  # the logs (severity => INVALID_USE), for filtering purposes
   SEVERITY_MAP =  {
       Logatron::DEBUG => 0,
       Logatron::INFO => 1,

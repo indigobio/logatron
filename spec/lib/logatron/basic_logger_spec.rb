@@ -7,9 +7,9 @@ module Logatron
       bl = BasicLogger.new
       io = StringIO.new
       Logatron.configure {|config| config.transformer = proc {|x| x[:severity] + ' ' + x[:body]}; config.logger = Logger.new(io); }
-      Logatron::SEVERITY_MAP.keys.each do |sev|
-        bl.send(sev.downcase, 'msg')
-        expect(io.string).to eql("#{sev.upcase} msg\n")
+      Logatron::SEVERITY_MAP.keys.map(&:downcase).each do |severity|
+        bl.send(severity, 'msg')
+        expect(io.string).to eql("#{severity.upcase} msg\n")
         io.reopen
       end
     end
@@ -20,8 +20,7 @@ module Logatron
         io = StringIO.new
         duration = 0
         Logatron.configure {|config| config.transformer = proc {|x| duration = x[:duration]; x[:duration].to_s}; config.logger = Logger.new(io); }
-        bl.log do |_|
-        end
+        bl.log {}
        expect(duration).to be_a_kind_of Float
       end
       context 'there are no errors' do
