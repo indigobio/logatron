@@ -1,20 +1,22 @@
 module Logatron
-  WARN = 'WARN'.freeze
+  MSG_ID = :msg_id
+  SITE = :site
+
+  DEBUG = 'DEBUG'.freeze
+  INVALID_USE = 'INVALID_USE'.freeze
   INFO = 'INFO'.freeze
+  WARN = 'WARN'.freeze
   ERROR = 'ERROR'.freeze
   CRITICAL = 'CRITICAL'.freeze
   FATAL = 'FATAL'.freeze
-  DEBUG = 'DEBUG'.freeze
-  INVALID_USE = 'INVALID_USE'.freeze
-  MSG_ID = :msg_id
-  SITE = :site
+
   SEVERITY_MAP =  {
       Logatron::DEBUG => 0,
+      Logatron::INFO => 1,
       Logatron::INVALID_USE => 1,
-      Logatron::INFO => 2,
-      Logatron::WARN => 3,
-      Logatron::ERROR => 4,
-      Logatron::CRITICAL => 5,
-      Logatron::FATAL => 6
+      Logatron::WARN => 2,
+      Logatron::ERROR => 3,
+      Logatron::CRITICAL => 4,
+      Logatron::FATAL => 5
   }
 end

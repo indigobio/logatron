@@ -22,6 +22,10 @@ module Logatron
       write(format_log(msg: msg, severity: DEBUG), SEVERITY_MAP[DEBUG])
     end
 
+    def invalid_use(msg)
+      write(format_log(msg: msg, severity: INVALID_USE), SEVERITY_MAP[INVALID_USE])
+    end
+
     def error(msg)
       write(format_log(msg: msg, severity: ERROR), SEVERITY_MAP[ERROR])
     end
@@ -39,16 +43,16 @@ module Logatron
       start = Time.now
       begin
         res = block.call(ml)
-        write(format_log(severity: severity, msg: msg, status: status, duration: milliseconds_elapsed(Time.now, start), inputs: source, request: request),SEVERITY_MAP[severity])
+        write(format_log(severity: severity, msg: msg, status: status, duration: milliseconds_elapsed(Time.now, start), inputs: source, request: request), SEVERITY_MAP[severity])
         res
       rescue Exception => e
-        write(format_log(severity: severity, msg: msg, status: status, duration: milliseconds_elapsed(Time.now, start), inputs: source, request: request),SEVERITY_MAP[severity])
+        write(format_log(severity: severity, msg: msg, status: status, duration: milliseconds_elapsed(Time.now, start), inputs: source, request: request), SEVERITY_MAP[severity])
         ml.flush
         raise e
       end
     end
 
-    def write(string,severity)
+    def write(string, severity)
       Logatron.configuration.logger.log(severity, string)
     end
   end

@@ -19,12 +19,12 @@ module Logatron
 
   describe Configuration do
     describe '#initialize' do
-      it 'Sets reasonable defaults' do
+      it 'sets reasonable defaults' do
         configuration = Configuration.new
         expect(configuration.logger).to be_a_kind_of(Logger)
         expect(configuration.host).to eql(`hostname`.chomp)
         expect(configuration.level).to eql(Logatron::INFO)
-        expect(configuration.loggable_levels).to eql [INFO,WARN,ERROR,CRITICAL,FATAL]
+        expect(configuration.loggable_levels).to eql [INFO,INVALID_USE,WARN,ERROR,CRITICAL,FATAL]
         expect(configuration.transformer.call({msg:'text'})).to eql '{"msg":"text"}'
       end
     end

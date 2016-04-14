@@ -7,8 +7,8 @@ module Logatron
       bl = BasicLogger.new
       io = StringIO.new
       Logatron.configure {|config| config.transformer = proc {|x| x[:severity] + ' ' + x[:body]}; config.logger = Logger.new(io); }
-      %w(info warn debug error critical fatal).each do |sev|
-        bl.send(sev, 'msg')
+      Logatron::SEVERITY_MAP.keys.each do |sev|
+        bl.send(sev.downcase, 'msg')
         expect(io.string).to eql("#{sev.upcase} msg\n")
         io.reopen
       end
@@ -20,7 +20,7 @@ module Logatron
         io = StringIO.new
         duration = 0
         Logatron.configure {|config| config.transformer = proc {|x| duration = x[:duration]; x[:duration].to_s}; config.logger = Logger.new(io); }
-        bl.log do |sl|
+        bl.log do |_|
         end
        expect(duration).to be_a_kind_of Float
       end
@@ -39,10 +39,10 @@ module Logatron
           io = StringIO.new
           Logatron.configure {|config| config.transformer = proc {|x| x[:body]}; config.logger = Logger.new(io); }
           begin
-          bl.log do |sl|
-            sl.info('I do not exist')
-            raise 'anything'
-          end
+            bl.log do |sl|
+              sl.info('I do not exist')
+              raise 'anything'
+            end
           rescue
           end
           expect(io.string).to eql "-\nI do not exist\n"

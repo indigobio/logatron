@@ -1,9 +1,5 @@
 # Logatron
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/logatron/logatron`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
-
 ## Installation
 
 Add this line to your application's Gemfile:
@@ -26,12 +22,14 @@ Or install it yourself as:
 Severities are used to examine and filter server logs, create alerts, and analyze user behavior.
 
 * Debug - use for fixing production bugs or deeper inspection into behavior
-* Invalid Use - use for user errors due to invalid inputs
 * Info - use for general information (successful operations, ec.)
+* Invalid Use - use for user errors due to invalid inputs
 * Warn - use for recoverable errors
 * Error - use for known unrecoverable errors
 * Critical - use for unknown unrecoverable errors (system-level rescues)
 * Fatal - use for system errors
+
+*Invalid Use* - inappropriate inputs from a user - are not immediately actionable for a development team, but may provide input into customer care, future features, or bug fixes for poorly implemented features. This makes them a discreet category above `INFO` so that any queries on the logs can be readily consumed by such information seekers.
 
 ## Development
 

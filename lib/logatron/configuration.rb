@@ -30,12 +30,7 @@ module Logatron
       @transformer =  proc {|x| x.to_json}
       @host = `hostname`.chomp
       @level = INFO
-      levels = [DEBUG,
-                INFO,
-                WARN,
-                ERROR,
-                CRITICAL,
-                FATAL]
+      levels = Logatron::SEVERITY_MAP.keys
       @loggable_levels = levels.slice(levels.index(@level), levels.size-1)
       bc = ActiveSupport::BacktraceCleaner.new
       bc.add_filter { |line| line.gsub(Rails.root.to_s, '') } if defined? Rails

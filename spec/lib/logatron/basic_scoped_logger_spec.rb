@@ -4,8 +4,8 @@ require 'logatron/basic_scoped_logger'
 module Logatron
   describe BasicScopedLogger do
     it 'it supports a set of severities for logging' do
-      %w(info warn debug error critical fatal).each do |severity|
-        expect(BasicScopedLogger.method_defined? severity).to be(true)
+      Logatron::SEVERITY_MAP.keys.each do |severity|
+        expect(BasicScopedLogger.method_defined? severity.downcase).to be(true)
       end
     end
 
