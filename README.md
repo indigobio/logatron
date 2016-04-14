@@ -29,7 +29,7 @@ Severities are used to examine and filter server logs, create alerts, and analyz
 * Critical - use for unknown unrecoverable errors (system-level rescues)
 * Fatal - use for system errors
 
-*Invalid Use* - inappropriate inputs from a user - are not immediately actionable for a development team, but may provide input into customer care, future features, or bug fixes for poorly implemented features. This makes them a discreet category above `INFO` so that any queries on the logs can be readily consumed by such information seekers.
+*Invalid Use* - inappropriate inputs from a user - are not immediately actionable for a development team, but may provide input into customer care, future features, or bug fixes for poorly implemented features. This makes them a discrete category similar to `INFO` so that any queries on the logs can be readily consumed by such information seekers.
 
 ## Development
 
