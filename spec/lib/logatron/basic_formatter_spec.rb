@@ -9,5 +9,4 @@ module Logatron
       end
     end
   end
-
 end
