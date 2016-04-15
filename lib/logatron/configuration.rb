@@ -30,13 +30,9 @@ module Logatron
       @transformer =  proc {|x| x.to_json}
       @host = `hostname`.chomp
       @level = INFO
-      levels = [DEBUG,
-                INFO,
-                WARN,
-                ERROR,
-                CRITICAL,
-                FATAL]
-      @loggable_levels = levels.slice(levels.index(@level), levels.size-1)
+      level_threshold = SEVERITY_MAP[@level]
+      levels = Logatron::SEVERITY_MAP.keys
+      @loggable_levels = levels.select{|level| SEVERITY_MAP[level] >= level_threshold}
       bc = ActiveSupport::BacktraceCleaner.new
       bc.add_filter { |line| line.gsub(Rails.root.to_s, '') } if defined? Rails
       bc.add_silencer { |line| line =~ /gems/ }

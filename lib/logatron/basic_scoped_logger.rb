@@ -9,14 +9,7 @@ module Logatron
 
     def initialize(logger)
       @logger = logger
-      @logs = {
-          DEBUG => [],
-          INFO => [],
-          WARN => [],
-          ERROR => [],
-          CRITICAL => [],
-          FATAL => []
-      }
+      @logs = Hash[Logatron::SEVERITY_MAP.keys.map{|key| [key, []]}]
     end
 
     def info(msg)
@@ -29,6 +22,10 @@ module Logatron
 
     def debug(msg)
       write(format_log(msg: msg, severity: DEBUG), DEBUG)
+    end
+
+    def invalid_use(msg)
+      write(format_log(msg: msg, severity: INVALID_USE), INVALID_USE)
     end
 
     def error(msg)
@@ -50,10 +47,9 @@ module Logatron
     def flush
       Logatron.configuration.loggable_levels.each do |key|
         @logs[key].each do |item|
-          @logger.write(item,SEVERITY_MAP[key])
+          @logger.write(item, SEVERITY_MAP[key])
         end
       end
     end
   end
-
 end
