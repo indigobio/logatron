@@ -5,23 +5,6 @@
 VERSION="$1"
 VERSION="${VERSION:?"must provide version as first parameter"}"
 SCRIPT_DIR="$(cd "$(dirname "$0")"; pwd)"
-FEATURE_DIR="${SCRIPT_DIR}/features"
-FEATURE_PREFIX=CR
-
-ensureLabelerInstalled(){
-    if ! which label_features > /dev/null; then
-        echo -e "\nERROR: Install the feature file labeler gem"
-        echo "   https://github.com/indigo-biosystems/feature_file_labeler"
-        exit 1
-    fi
-}
-
-labelFeatures(){
-    echo -e "\nUpdating feature files"
-    label_features -p "${FEATURE_PREFIX}" -d "${FEATURE_DIR}" 2>&1 > ../"${FEATURE_PREFIX}_output.txt"
-    mv feature_report.txt ../"${FEATURE_PREFIX}_feature_report.txt"
-    stageAndCommit "Label feature files" "${FEATURE_DIR}"
-}
 
 updateVersion(){
     updateGemspec
@@ -74,6 +57,4 @@ thereAreStagedFiles(){
     fi
 }
 
-#ensureLabelerInstalled
-#labelFeatures
 updateVersion
