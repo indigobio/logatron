@@ -1,4 +1,4 @@
-#!/bin/bash -xe
+#!/bin/bash -e
 
 #This script is used during the release process. It is not intended to be ran manually.
 
