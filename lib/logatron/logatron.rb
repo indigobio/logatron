@@ -16,8 +16,10 @@ module Logatron
       @log ||= Logatron::BasicLogger.new
     end
 
-    def log_exception(e, severity)
-      logger.send(severity.downcase, "#{e.class} #{e.message} -> #{configuration.backtrace_cleaner.clean(e.backtrace).join(' -> ')}")
+    def log_exception(e, severity, additional_info={})
+      # 'additional_info' can be a flat hash or anything with '#to_s'
+      message = exception_message(e, additional_info)
+      logger.send(severity.downcase, message)
     end
 
     def level=(level)
@@ -71,6 +73,15 @@ module Logatron
 
     def msg_id=(id)
       Logatron::Contexts.msg_id = id
+    end
+
+    private
+
+    def exception_message(e, additional)
+      info = additional.is_a?(Hash) ? additional.map { |(k, v)| "#{k}=>#{v}"}.join(', ') : additional
+      info_msg = info.nil? || info.empty? ? '' : "; MORE_INFO( #{info} )"
+      backtrace = configuration.backtrace_cleaner.clean(e.backtrace).join(' -> ')
+      "#{e.class} #{e.message}#{info_msg} -> #{backtrace}"
     end
   end
 end
