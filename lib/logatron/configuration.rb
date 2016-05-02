@@ -21,12 +21,12 @@ module Logatron
   end
 
   class Configuration
-    attr_accessor :logger, :host, :level, :transformer
+    attr_accessor :logger, :host, :level, :transformer, :app_id
     attr_reader :loggable_levels, :backtrace_cleaner
 
     def initialize
       @logger = Logger.new(STDOUT)
-
+      @app_id = 'N/A'
       @transformer =  proc {|x| x.to_json}
       @host = `hostname`.chomp
       @level = INFO
@@ -40,7 +40,7 @@ module Logatron
     end
 
     def logger=(logger)
-      level = @logger.level 
+      level = @logger.level
       @logger = logger
       @logger.level = level
       @logger.formatter = Logatron::BasicFormatter.new
