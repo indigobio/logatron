@@ -18,7 +18,7 @@ module Logatron
         duration: duration,
         request: request,
         source: inputs,
-        body: msg) + "\n"
+        body: msg)
     end
   end
 end
