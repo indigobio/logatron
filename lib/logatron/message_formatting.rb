@@ -8,6 +8,7 @@ module Logatron
 
     def format_log(msg: '-', status: '-', duration: '-', request: '-', inputs: '-', severity: '-')
       Logatron.configuration.transformer.call(
+        pid: Process.pid,
         app_id: Logatron.configuration.app_id,
         timestamp: Time.now.iso8601,
         severity: severity,
@@ -18,7 +19,7 @@ module Logatron
         duration: duration,
         request: request,
         source: inputs,
-        body: msg) + "\n"
+        body: msg)
     end
   end
 end
