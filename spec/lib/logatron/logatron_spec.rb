@@ -2,7 +2,6 @@ require 'rspec'
 require 'logatron/logatron'
 
 module Logatron
-
   describe 'log_exception' do
     let!(:logger) { Logatron::BasicLogger.new }
     let(:error) { StandardError.new('My message') }
@@ -21,7 +20,7 @@ module Logatron
       it 'logs error with severity and hash values' do
         msg = 'StandardError My message; MORE_INFO( my=>hash, of=>values ) -> one -> two -> three'
         expect(logger).to receive(:info).with(msg)
-        Logatron.log_exception(error, Logatron::INFO, {my: 'hash', of: 'values'})
+        Logatron.log_exception(error, Logatron::INFO, my: 'hash', of: 'values')
       end
     end
     context 'when additional information is provided as a string' do

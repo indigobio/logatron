@@ -57,4 +57,3 @@ module Logatron
     end
   end
 end
-

@@ -5,12 +5,12 @@ require 'logatron/version'
 
 Gem::Specification.new do |spec|
   spec.name          = 'logatron'
-  spec.version       = '0.3.0'
+  spec.version       = '0.4.0'
   spec.authors       = ['Justin Grimes']
   spec.email         = ['justin.mgrimes@gmail.com']
 
-  spec.summary       = %q{Logging for ascent }
-  spec.description   = %q{Logging for ascent }
+  spec.summary       = 'Logging for ascent '
+  spec.description   = 'Logging for ascent '
   spec.homepage      = 'http://github.com/indigobio/logatron'
 
   spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }

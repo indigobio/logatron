@@ -16,15 +16,16 @@ module Logatron
       @log ||= Logatron::BasicLogger.new
     end
 
-    def log_exception(e, severity, additional_info={})
+    def log_exception(e, severity, additional_info = {})
       # 'additional_info' can be a flat hash or anything with '#to_s'
       message = exception_message(e, additional_info)
       logger.send(severity.downcase, message)
     end
 
     def level=(level)
-      logger.level=level
+      logger.level = level
     end
+
     def error(msg)
       logger.error(msg)
     end
@@ -51,7 +52,7 @@ module Logatron
 
     def http_headers
       {
-          'X-Ascent-Log-Id' => msg_id
+        'X-Ascent-Log-Id' => msg_id
       }
     end
 
@@ -78,7 +79,7 @@ module Logatron
     private
 
     def exception_message(e, additional)
-      info = additional.is_a?(Hash) ? additional.map { |(k, v)| "#{k}=>#{v}"}.join(', ') : additional
+      info = additional.is_a?(Hash) ? additional.map { |(k, v)| "#{k}=>#{v}" }.join(', ') : additional
       info_msg = info.nil? || info.empty? ? '' : "; MORE_INFO( #{info} )"
       backtrace = configuration.backtrace_cleaner.clean(e.backtrace).join(' -> ')
       "#{e.class} #{e.message}#{info_msg} -> #{backtrace}"
