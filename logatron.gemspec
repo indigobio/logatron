@@ -9,8 +9,8 @@ Gem::Specification.new do |spec|
   spec.authors       = ['Justin Grimes']
   spec.email         = ['justin.mgrimes@gmail.com']
 
-  spec.summary       = %q{Logging for ascent }
-  spec.description   = %q{Logging for ascent }
+  spec.summary       = 'Logging for ascent '
+  spec.description   = 'Logging for ascent '
   spec.homepage      = 'http://github.com/indigobio/logatron'
 
   spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }

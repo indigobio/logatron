@@ -16,7 +16,7 @@ module Logatron
   end
 
   def self.configure
-    self.configuration
+    configuration
     yield(configuration)
   end
 
@@ -27,12 +27,12 @@ module Logatron
     def initialize
       @logger = Logger.new(STDOUT)
       @app_id = 'N/A'
-      @transformer =  proc {|x| x.to_json}
+      @transformer = proc { |x| x.to_json }
       @host = `hostname`.chomp
       @level = INFO
       level_threshold = SEVERITY_MAP[@level]
       levels = Logatron::SEVERITY_MAP.keys
-      @loggable_levels = levels.select{|level| SEVERITY_MAP[level] >= level_threshold}
+      @loggable_levels = levels.select { |level| SEVERITY_MAP[level] >= level_threshold }
       bc = ActiveSupport::BacktraceCleaner.new
       bc.add_filter { |line| line.gsub(Rails.root.to_s, '') } if defined? Rails
       bc.add_silencer { |line| line =~ /gems/ }

@@ -12,7 +12,7 @@ module Logatron
     it 'buffers all logs' do
       io = StringIO.new
       logger = BasicLogger.new
-      Logatron.configure {|config| config.transformer = proc {|x| x[:body]}; config.logger = Logger.new(io); }
+      Logatron.configure { |config| config.transformer = proc { |x| x[:body] }; config.logger = Logger.new(io); }
       bsl = BasicScopedLogger.new(logger)
       bsl.error('buffered')
       expect(io.string).to_not eql "buffered\n"
