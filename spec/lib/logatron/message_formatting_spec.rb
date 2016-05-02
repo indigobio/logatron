@@ -9,7 +9,7 @@ module Logatron
         structured_hash = {}
         Logatron.configure { |conf| conf.logger = Logger.new(STDOUT); conf.transformer = proc { |x| structured_hash = x; x[:body] } }
         BasicLogger.new.debug('blah')
-        expect(structured_hash.keys).to eql [:app_id, :timestamp, :severity, :host, :id, :site, :status, :duration, :request, :source, :body]
+        expect(structured_hash.keys).to eql [:pid, :app_id, :timestamp, :severity, :host, :id, :site, :status, :duration, :request, :source, :body]
       end
     end
     describe '.milliseconds_elapsed' do
