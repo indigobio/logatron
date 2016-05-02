@@ -24,6 +24,7 @@ module Logatron
         expect(configuration.logger).to be_a_kind_of(Logger)
         expect(configuration.host).to eql(`hostname`.chomp)
         expect(configuration.level).to eql(Logatron::INFO)
+        expect(configuration.app_id).to eql('N/A')
         expect(configuration.loggable_levels).to eql [INFO,INVALID_USE,WARN,ERROR,CRITICAL,FATAL]
         expect(configuration.transformer.call({msg:'text'})).to eql '{"msg":"text"}'
       end
