@@ -38,7 +38,7 @@ module Logatron
     config.lograge.enabled = true
     config.lograge.formatter = Lograge::Formatters::Json.new
     config.lograge.custom_options = lambda do |event|
-      { source: event.payload[:ip], severity: Logatron::INFO, site: Logatron.site, timestamp: Time.now.iso8601, host: Logatron.configuration.host, id: Logatron.msg_id }
+      { source: event.payload[:ip], severity: Logatron::INFO, site: Logatron.site, timestamp: Time.now.iso8601, host: Logatron.configuration.host, app_id: Logatron.configuration.app_id, id: Logatron.msg_id }
     end
   end
 end
