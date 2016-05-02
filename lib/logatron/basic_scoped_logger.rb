@@ -9,7 +9,7 @@ module Logatron
 
     def initialize(logger)
       @logger = logger
-      @logs = Hash[Logatron::SEVERITY_MAP.keys.map{|key| [key, []]}]
+      @logs = Hash[Logatron::SEVERITY_MAP.keys.map { |key| [key, []] }]
     end
 
     def info(msg)
@@ -40,7 +40,7 @@ module Logatron
       write(format_log(msg: msg, severity: FATAL), FATAL)
     end
 
-    def write(string, severity=INFO)
+    def write(string, severity = INFO)
       @logs[severity].push string
     end
 

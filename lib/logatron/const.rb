@@ -19,13 +19,13 @@ module Logatron
   #   UNKNOWN = 5
   # Note that the Logatron Severities will be put into
   # the logs (severity => INVALID_USE), for filtering purposes
-  SEVERITY_MAP =  {
-      Logatron::DEBUG => 0,
-      Logatron::INFO => 1,
-      Logatron::INVALID_USE => 1,
-      Logatron::WARN => 2,
-      Logatron::ERROR => 3,
-      Logatron::CRITICAL => 4,
-      Logatron::FATAL => 5
-  }
+  SEVERITY_MAP = {
+    Logatron::DEBUG => 0,
+    Logatron::INFO => 1,
+    Logatron::INVALID_USE => 1,
+    Logatron::WARN => 2,
+    Logatron::ERROR => 3,
+    Logatron::CRITICAL => 4,
+    Logatron::FATAL => 5
+  }.freeze
 end
