@@ -1,3 +1,11 @@
+## [0.5.0](https://github.com/indigobio/logatron/compare/v0.4.1...indigobio:v0.5.0) (2016-06-02)
+
+- Update version to 0.5.0
+  ([be53842](https://github.com/indigobio/logatron/commit/be53842df2da6479b23ca019d34bdc96035e7915))
+- Added changelog and build.yml
+  ([2ee67c1](https://github.com/indigobio/logatron/commit/2ee67c100a012f7ba9c8ee9bd842603d9f108c84))
+
+
 ## [0.4.1](https://github.com/indigobio/logatron/compare/v0.4.0...indigobio:v0.4.1) (2016-05-02)
 
 [AR-1794](https://indigobio.atlassian.net/browse/AR-1794) - Add 'app' as a key to the logging format in logatron<br/>
@@ -104,4 +112,3 @@
 
 
 ## [0.1.0](https://github.com/indigobio/logatron/compare/b6d85beb93a2c9f3c18052f52ba676613c6bdaed...indigobio:v0.1.0) (2015-11-13)
-
