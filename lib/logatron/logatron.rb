@@ -50,10 +50,26 @@ module Logatron
       logger.debug(msg)
     end
 
+    # Deprecated; use request_info/parse_request_info for transportation-layer neutral methods.
     def http_headers
       {
-        'X-Ascent-Log-Id' => msg_id
+        'X-Ascent-Log-Id' => msg_id,
+        'X-Ascent-Site' => site
       }
+    end
+
+    def request_info
+      {
+        message_id: msg_id,
+        site: site
+      }
+    end
+
+    def parse_request_info(info)
+      if info
+        self.msg_id = info[:message_id] || info['message_id'] || self.msg_id
+        self.site = info[:site] || info['site'] || self.site
+      end
     end
 
     def log(id: msg_id, site: Logatron.site, msg: '-', severity: Logatron::INFO, request: '-', status: '-', source: '-', &block)
