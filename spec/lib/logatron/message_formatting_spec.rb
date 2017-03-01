@@ -7,7 +7,7 @@ module Logatron
     describe '.format_log' do
       it 'invokes a proc passing a structured hash' do
         structured_hash = {}
-        Logatron.configure { |conf| conf.logger = Logger.new(STDOUT); conf.transformer = proc { |x| structured_hash = x; x[:body] } }
+        Logatron.configure { |conf| conf.logger = Logger.new(File::NULL); conf.transformer = proc { |x| structured_hash = x; x[:body] } }
         BasicLogger.new.debug('blah')
         expect(structured_hash.keys).to eql [:pid, :app_id, :timestamp, :severity, :host, :id, :site, :status, :duration, :request, :source, :body]
       end
