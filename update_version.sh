@@ -8,7 +8,6 @@ SCRIPT_DIR="$(cd "$(dirname "$0")"; pwd)"
 
 updateVersion(){
     updateGemspec
-    updateLockfile
     commitStagedFiles "Update version to ${VERSION}"
 }
 
@@ -17,13 +16,6 @@ updateGemspec(){
     local gemspecPath="${SCRIPT_DIR}/logatron.gemspec"
     sed -i 's/\(\.version\s*=\s*\).*/\1'"'${VERSION}'/" "${gemspecPath}"
     stageFiles "${gemspecPath}"
-}
-
-updateLockfile(){
-    echo -e "\nUpdating lockfile"
-    bundle package --no-install > /dev/null
-    rm -rf .bundle/ vendor/
-    stageFiles "${SCRIPT_DIR}/Gemfile.lock"
 }
 
 stageAndCommit(){

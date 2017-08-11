@@ -2,7 +2,9 @@ require 'active_support/all'
 require 'logatron/version'
 require 'logatron/const'
 require 'logatron/contexts'
+require 'logatron/error_formatter'
 require 'logatron/message_formatting'
+require 'logatron/backtrace_cleaner'
 require 'logatron/basic_scoped_logger'
 require 'logatron/basic_formatter'
 require 'logatron/basic_logger'
@@ -16,10 +18,10 @@ module Logatron
       @log ||= Logatron::BasicLogger.new
     end
 
+    # @param additional_info [Object] Typically a flat hash, but can be anything that responds to '#to_s'
     def log_exception(e, severity, additional_info = {})
-      # 'additional_info' can be a flat hash or anything with '#to_s'
-      message = exception_message(e, additional_info)
-      logger.send(severity.downcase, message)
+      error_report = configuration.error_formatter.format_error_report(e, additional_info)
+      logger.send(severity.downcase, error_report)
     end
 
     def level=(level)
@@ -89,15 +91,6 @@ module Logatron
 
     def msg_id=(id)
       Logatron::Contexts.msg_id = id
-    end
-
-    private
-
-    def exception_message(e, additional)
-      info = additional.is_a?(Hash) ? additional.map { |(k, v)| "#{k}=>#{v}" }.join(', ') : additional
-      info_msg = info.nil? || info.empty? ? '' : "; MORE_INFO( #{info} )"
-      backtrace = configuration.backtrace_cleaner.clean(e.backtrace).join(' -> ')
-      "#{e.class} #{e.message}#{info_msg} -> #{backtrace}"
     end
   end
 end
