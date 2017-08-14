@@ -1,5 +1,7 @@
 require 'logatron/contexts'
 require 'logatron/configuration'
+require 'time'
+
 module Logatron
   module Formatting
     def milliseconds_elapsed(finish, start)
@@ -10,7 +12,7 @@ module Logatron
       Logatron.configuration.transformer.call(
         pid: Process.pid,
         app_id: Logatron.configuration.app_id,
-        timestamp: Time.now.iso8601,
+        timestamp: Time.now.iso8601(3),
         severity: severity,
         host: Logatron.configuration.host,
         id: Contexts.msg_id,
