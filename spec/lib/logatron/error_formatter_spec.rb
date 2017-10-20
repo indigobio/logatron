@@ -1,5 +1,5 @@
 require 'rspec'
-require 'logatron/logatron'
+require 'logatron'
 
 module Logatron
   describe ErrorFormatter do
