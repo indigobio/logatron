@@ -1,4 +1,4 @@
-require 'logatron/logatron'
+require 'logatron'
 Logatron.configure do |config|
   config.host = 'my_host'
   config.app_id = 'my_app_id'

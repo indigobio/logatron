@@ -1,4 +1,4 @@
-require 'logatron/logatron'
+require 'logatron'
 begin
   require 'lograge'
 rescue LoadError

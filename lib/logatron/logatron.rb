@@ -1,5 +1,4 @@
 require 'active_support/all'
-require 'logatron/version'
 require 'logatron/const'
 require 'logatron/contexts'
 require 'logatron/error_formatter'
