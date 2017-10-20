@@ -94,3 +94,5 @@ module Logatron
     end
   end
 end
+
+require 'logatron/railtie' if defined?(Rails)
