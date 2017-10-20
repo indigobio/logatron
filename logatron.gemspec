@@ -4,7 +4,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
 Gem::Specification.new do |spec|
   spec.name          = 'logatron'
-  spec.version       = '0.15.0'
+  spec.version       = '0.16.0'
   spec.authors       = ['Indigo BioAutomation']
 
   spec.summary       = 'Logging for ascent '
