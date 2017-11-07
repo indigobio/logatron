@@ -1,13 +1,4 @@
 require 'logatron'
-begin
-  require 'lograge'
-rescue LoadError
-  msg = [
-      'Include "lograge" in your bundle. It was left out of the gemspec of',
-      'Logatron to keep dependencies down for projects that do not use Rails.'
-  ].join(' ')
-  raise LoadError, msg
-end
 require 'syslog/logger'
 
 module Syslog
@@ -45,9 +36,7 @@ module Logatron
           request = event.payload[:rails_request]
           standard_opts(request).merge(custom_opts(request))
         end
-        app_config.after_initialize do
-          setup_app_controller
-        end
+        setup_app_controller
       end
 
       private
@@ -82,11 +71,6 @@ module Logatron
     end
   end
 
-  # NOTE: This Railtie is not tested in this project. Doing so would require
-  #   having a small rails app in the test folder, or using the 'combustion'
-  #   gem. It isn't worth it. Just verify it works in the apps that use it.
-  #   We will know if it doesn't work because there will not be log messages
-  #   for requests.
   class Railtie < Rails::Railtie
     initializer 'logatron.configure_rails_initialization' do |app|
       if defined?(Warden::Manager)
@@ -95,7 +79,25 @@ module Logatron
         app.middleware.use Logatron::Middleware
       end
     end
-
-    SetupLograge.setup(config)
+    config.after_initialize do
+      SetupLograge.setup(config)
+    end
   end
+end
+
+if defined? Lograge::Railtie
+  raise [
+        'Lograge::Railtie cannot be required before Logatron::Railtie. ',
+        'The config.after_initialize of Logatron must run before that ',
+        'of Lograge::Railtie.'
+    ].join
+end
+begin
+  require 'lograge'
+rescue LoadError
+  msg = [
+      'Include "lograge" in your bundle. It was left out of the gemspec of',
+      'Logatron to keep dependencies down for projects that do not use Rails.'
+  ].join(' ')
+  raise LoadError, msg
 end

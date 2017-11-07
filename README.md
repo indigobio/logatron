@@ -27,25 +27,52 @@ The goal: constrain all configuration regarding the logging to go through
 logatron and not the internals of logatron (such as lograge). Consumers of
 logatron should not have to know the internals.
 
-Logatron must be configured before anything else since there can be other
-configuration dependent upon those values (lograge for sure). This is done by
-doing that configuration in an initializer file that will be listed first when
-sorted in that directory alphanumerically. Putting an underscore (`_`) in front
-of the name typically will move it to the top of the list -
-`config/initializers/_log.rb`. Here is an example configuration.
+The logatron railtie `after_initialize` must run before the `after_initialize`
+of the lograge railtie and after logatron has been initialized. This means that
+the logatron railtie must be required before lograge and that logatron must be
+configured before all the rails initializers run. The general execution of code
+should be
+
+1. logatron railtie required (done in `config/application.rb`)
+2. logatron railtie registers its `after_initialize` block (done by logatron
+   railtie)
+3. lograge railtie required (done at the end of logatron railtie)
+4. lograge railtie registers its `after_initialize` block (done by lograge
+   railtie)
+5. logatron is configured (done in `config/initializers/_logatron.rb`)
+6. logatron `after_initialize` block executed (done by rails)
+7. lograge `after_initialize` block executed (done by rails)
+
+As far as requiring, do not require lograge directly in rails. Instead add the
+following line to `config/application.rb` somewhere after rails has been
+required but before bundler requires its gem groups.
 
 ```ruby
-require 'logatron/logatron'
+# rails was required prior via "boot" or "rails/all"
+require 'logatron/railtie'
+# bundler does its requiring after...
+```
 
+Logatron is configured in the first initializer of rails. Ensure the
+configuration is in the first initializer when sorted by name alphanumerically.
+In practice, this can be as easy as adding an underscore to the name to push it
+to the top. The convention is to put it in `config/initializers/_logatron.rb`.
+
+```ruby
+require 'logatron'
 Logatron.configure do |config|
   config.host = `hostname`.chomp
   config.app_id = 'my_app_name'
-  config.logger = Logger.new(STDOUT)
+  config.logger = Logger.new(logger_destination, formatter: Logatron::BasicFormatter.new)
   config.level = Logatron::INFO
   config.base_controller_class = 'ActionController::Base' # or 'ActionController::API' or 'ApplicationController'
   config.add_rails_request_field(:user_agent, &:user_agent)  # optional
 end
 ```
+
+The reason the logger is given the formatter is that lograge will use this
+logger directly to print out its json string. This prevents the "default"
+formatting of printing the severity and timestamp prior to the json string.
 
 All the configuration fields above are required with the exception of
 `.add_rails_request_field`.
