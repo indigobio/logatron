@@ -1,4 +1,6 @@
-# Logatron
+# DEPRECATED: this code	has moved into ascent-web
+
+# ~~Logatron~~
 
 ## Installation
 
